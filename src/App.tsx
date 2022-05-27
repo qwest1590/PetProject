@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Header from "./components/Header";
 import Category from "./components/Category";
 import { ICategoryProps } from "./components/Category";
 
@@ -9,16 +10,16 @@ import food from "./icons/food.svg";
 import rublesvg from "./icons/rub.svg";
 let testI: ICategoryProps = {
   id: 0,
-  name: "Доходы",
-  color: "none",
+  name: "Едадилище",
+  color: "lightblue",
   icon: food,
   value: 5,
   onClick: () => console.log("hello"),
 };
 let testI2: ICategoryProps = {
   id: 1,
-  name: "Расходы",
-  color: "none",
+  name: "Накопления",
+  color: "lightgray",
   icon: rublesvg,
   value: 225,
   onClick: function () {
@@ -29,6 +30,7 @@ let testI2: ICategoryProps = {
 function App() {
   return (
     <div className="App">
+      <Header />
       <Category {...testI} />
       <Category {...testI2} />
     </div>
