@@ -1,12 +1,15 @@
 import React from "react";
 import "./Category.css";
+//@ts-ignore
+import food from "../icons/food.svg";
+//@ts-ignore
+import ruble from "../icons/rub.svg";
 export interface ICategoryProps {
-  id: number;
+  readonly id: number;
   name: string;
   color: string;
   icon: string;
   value: number;
-  onClick(words: any): void;
 }
 export default function Category({
   id,
@@ -14,17 +17,14 @@ export default function Category({
   color,
   icon,
   value,
-  onClick,
 }: ICategoryProps) {
   return (
     <div className="wrapper">
-      <h3 className="name">{name}</h3>
-      <div
-        onClick={onClick}
-        className="circleWithIcon"
-        style={{ background: color }}
-      >
-        <img className="icon" src={icon} alt=""></img>
+      <h3 className="name">
+        {name} {id}
+      </h3>
+      <div className="circleWithIcon" style={{ background: color }}>
+        <img className="icon" src={icon === "food" ? food : ruble} alt=""></img>
       </div>
       <span className="categoryValue">{value}</span>
     </div>
