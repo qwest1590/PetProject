@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { useAppSelector } from "..";
 import { BurgerMenu } from "./BurgerMenu";
 import { CurrencyRate } from "./CurrencyRate";
 
@@ -29,15 +30,26 @@ const Totals = styled.div`
 `;
 
 const Header = () => {
+  const balanceTotal = useAppSelector((state) =>
+    state.categories.funds
+      .map((item) => item.value)
+      .reduce((prev, cur) => prev + cur, 0)
+  );
+  const expencesTotal = useAppSelector((state) =>
+    state.categories.expences
+      .map((item) => item.value)
+      .reduce((prev, cur) => prev + cur, 0)
+  );
+
   return (
     <HeaderWrapper>
       <BurgerMenu></BurgerMenu>
       <TotalWrapper>
         <Totals>
-          <span>Баланс</span> <span>{1}</span>
+          <span>Баланс</span> <span>{balanceTotal}</span>
         </Totals>
         <Totals>
-          <span>Расходы</span> <span>{1}</span>
+          <span>Расходы</span> <span>{expencesTotal}</span>
         </Totals>
         <Totals>
           <span>В Планах</span> <span>{1}</span>

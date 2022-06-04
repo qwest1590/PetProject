@@ -1,8 +1,10 @@
-import { AppDispatch, useAppDispatch } from "..";
+import { AppDispatch } from "..";
 import {
   ADD_INCOME_ITEM,
   TOGGLE_BURGER_MENU,
   GET_TODAY_CURRENCY_RATE,
+  ADD_FUNDS_ITEM,
+  ADD_EXPENCES_ITEM,
 } from "./types";
 
 export function addIncomeItem(payload: any) {
@@ -12,6 +14,19 @@ export function addIncomeItem(payload: any) {
   };
 }
 
+export function addFundsItem(payload: any) {
+  return {
+    type: ADD_FUNDS_ITEM,
+    payload: payload,
+  };
+}
+
+export function addExpencesItem(payload: any) {
+  return {
+    type: ADD_EXPENCES_ITEM,
+    payload: payload,
+  };
+}
 export function toggleBurgerMenu() {
   return {
     type: TOGGLE_BURGER_MENU,

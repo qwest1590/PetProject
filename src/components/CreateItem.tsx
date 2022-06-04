@@ -6,7 +6,7 @@ import styled from "styled-components";
 import backGroundImage from "../images/incomesBackground.jpg";
 import { icons } from "../icons/icons";
 import { useAppDispatch, useAppSelector } from "..";
-import { addIncomeItem } from "../redux/actions";
+// import { addIncomeItem } from "../redux/actions";
 
 const CreateItemWrapper = styled.div`
   height: 100%;
@@ -113,10 +113,11 @@ const IconStore = styled.div`
 
 export interface IcreateItemProps {
   categoryFolder: string;
+  addfunc: Function;
 }
 
-export const CreateItem = ({ categoryFolder }: IcreateItemProps) => {
-  const nextId = useAppSelector((state) => state.categories.income.length);
+export const CreateItem = ({ categoryFolder, addfunc }: IcreateItemProps) => {
+  const nextId = useAppSelector((state) => state.categories.nextId);
   const [iconStoreIsOpen, setIconStorIsOpen] = useState(false);
   const [categoryForCreate, setCategoryForCreate] = useState({
     name: "",
@@ -137,9 +138,9 @@ export const CreateItem = ({ categoryFolder }: IcreateItemProps) => {
 
   const onSubmitHandler = () => {
     if (categoryForCreate.icon === "") {
-      dispatch(addIncomeItem({ ...categoryForCreate, icon: delaultIcon }));
+      dispatch(addfunc({ ...categoryForCreate, icon: delaultIcon }));
     } else {
-      dispatch(addIncomeItem({ ...categoryForCreate }));
+      dispatch(addfunc({ ...categoryForCreate }));
     }
   };
 
@@ -220,7 +221,6 @@ export const CreateItem = ({ categoryFolder }: IcreateItemProps) => {
             ></HiddenRadio>
           </Label>
         </ToggleDiv>
-
         <Btn
           type="submit"
           style={{

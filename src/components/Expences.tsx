@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useAppSelector } from "..";
 import Category from "./Category";
-const FundsWrapper = styled.div`
-  height: 200px;
-  background-color: #e2f0a6;
+const ExpencesWrapper = styled.div`
+  min-height: 200px;
+  background-color: #a9f0f0;
   display: flex;
   align-items: center;
 `;
@@ -20,12 +20,12 @@ const AddBtn = styled.button`
   margin-left: 10px;
 `;
 
-export const Funds = () => {
-  const fundsItems = useAppSelector((state) => state.categories.funds);
+export const Expences = () => {
+  const expencesItems = useAppSelector((state) => state.categories.expences);
   return (
-    <FundsWrapper>
-      {fundsItems.length > 0
-        ? fundsItems.map((item) => (
+    <ExpencesWrapper>
+      {expencesItems.length > 0
+        ? expencesItems.map((item) => (
             <li key={item.id} style={{ listStyle: "none" }}>
               <Category key={item.id} {...item} />{" "}
             </li>
@@ -35,11 +35,11 @@ export const Funds = () => {
         {" "}
         <Link
           style={{ textDecoration: "none", color: "black", opacity: 0.7 }}
-          to={"/createFunds"}
+          to={"/createExpences"}
         >
           +
         </Link>
       </AddBtn>
-    </FundsWrapper>
+    </ExpencesWrapper>
   );
 };
