@@ -2,9 +2,15 @@
   font-family: "Roboto", sans-serif;
   src: url("./fonts/Roboto-Regular.ttf");
 }
+* {
+  box-sizing: border-box;
+}
 html {
   font-family: "Roboto", sans-serif;
 }
-body {
+body,
+button,
+input {
   margin: 0;
+  padding: 0;
 }

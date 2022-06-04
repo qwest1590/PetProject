@@ -1,21 +1,29 @@
 import React from "react";
-import "./Header.css";
-import styled from "styled-components";
-const HeaderWrapper = styled.div`
+import styled, { css } from "styled-components";
+import { BurgerMenu } from "./BurgerMenu";
+import { CurrencyRate } from "./CurrencyRate";
+
+const flexAndCenter = css`
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+const HeaderWrapper = styled.div`
+  ${flexAndCenter}
   height: 100px;
   background: lightblue;
   align-items: center;
   justify-content: space-around;
 `;
+
 const TotalWrapper = styled.div`
   display: flex;
 `;
+
 const Totals = styled.div`
-  display: flex;
+  ${flexAndCenter}
   flex-flow: column;
-  justify-content: space-around;
-  align-items: center;
   height: 80px;
   width: 150px;
 `;
@@ -23,7 +31,7 @@ const Totals = styled.div`
 const Header = () => {
   return (
     <HeaderWrapper>
-      <div className="burgerMenu">Burger Menu</div>
+      <BurgerMenu></BurgerMenu>
       <TotalWrapper>
         <Totals>
           <span>Баланс</span> <span>{1}</span>
@@ -35,7 +43,7 @@ const Header = () => {
           <span>В Планах</span> <span>{1}</span>
         </Totals>
       </TotalWrapper>
-      <div>Something</div>
+      <CurrencyRate />
     </HeaderWrapper>
   );
 };
