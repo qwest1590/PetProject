@@ -1,15 +1,12 @@
-import React, { ReactEventHandler } from "react";
+import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import backGroundImage from "../images/incomesBackground.jpg";
 import { icons } from "../icons/icons";
-import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState, useAppDispatch, useAppSelector } from "..";
+import { useAppDispatch, useAppSelector } from "..";
 import { addIncomeItem } from "../redux/actions";
-import { set } from "immer/dist/internal";
 
 const CreateItemWrapper = styled.div`
   height: 100%;
@@ -119,7 +116,7 @@ export interface IcreateItemProps {
 }
 
 export const CreateItem = ({ categoryFolder }: IcreateItemProps) => {
-  const nextId = useAppSelector((state) => state.income.items.length);
+  const nextId = useAppSelector((state) => state.categories.income.length);
   const [iconStoreIsOpen, setIconStorIsOpen] = useState(false);
   const [categoryForCreate, setCategoryForCreate] = useState({
     name: "",

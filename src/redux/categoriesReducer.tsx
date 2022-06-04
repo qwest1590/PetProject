@@ -1,17 +1,19 @@
 interface CategoriesState {
-  items: object[];
-  seconditems: object[];
+  income: object[];
+  funds: object[];
+  expences: object[];
 }
 
 const inititalState: CategoriesState = {
-  items: [],
-  seconditems: [],
+  income: [],
+  funds: [],
+  expences: [],
 };
 
-export const incomeReducer = (state = inititalState, action: any) => {
+export const categoriesReducer = (state = inititalState, action: any) => {
   switch (action.type) {
     case "ADD_INCOME_ITEM":
-      return { ...state, items: [...state.items, action.payload] };
+      return { ...state, income: [...state.income, action.payload] };
     default:
       return state;
   }

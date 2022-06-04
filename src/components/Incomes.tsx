@@ -23,7 +23,7 @@ const AddBtn = styled.button`
 `;
 
 export const Incomes = () => {
-  const incomeItems = useAppSelector((state) => state.income.items);
+  const incomeItems = useAppSelector((state) => state.categories.income);
   const dispatch = useDispatch();
 
   return (

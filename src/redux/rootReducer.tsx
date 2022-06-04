@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import { incomeReducer } from "./categoriesReducer";
+import { categoriesReducer } from "./categoriesReducer";
 import { appReducer } from "./appReducer";
 import { currencyRateReducer } from "./currencyRateReducer";
 export const rootReducer = combineReducers({
   app: appReducer,
-  income: incomeReducer,
+  categories: categoriesReducer,
   currencyRate: currencyRateReducer,
 });
