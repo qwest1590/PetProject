@@ -7,6 +7,16 @@ import { CreateItem } from "./components/CreateItem";
 import { Funds } from "./components/Funds";
 import { addExpencesItem, addFundsItem, addIncomeItem } from "./redux/actions";
 import { Expences } from "./components/Expences";
+import incomesBackground from "../src/images/incomesBackground.jpg";
+import fundsBackground from "../src/images/fundsBackground.jpg";
+import expencesBackground from "../src/images/expencesBackground.jpg";
+import { CategoryEditor } from "./components/CategoryEditor";
+
+const arr = [{ id: 0 }, { id: 1 }, { id: 2, name: "a" }];
+const index = arr.findIndex((item) => {
+  return item.id === 1;
+});
+arr.splice(index, 1, { id: 555 });
 
 function App() {
   return (
@@ -20,19 +30,34 @@ function App() {
         <Route
           path="/createIncome"
           element={
-            <CreateItem categoryFolder="Income" addfunc={addIncomeItem} />
+            <CreateItem
+              categoryFolder="income"
+              addFunc={addIncomeItem}
+              backgroundImage={incomesBackground}
+            />
           }
         />
         <Route
           path="/createFunds"
-          element={<CreateItem categoryFolder="Funds" addfunc={addFundsItem} />}
+          element={
+            <CreateItem
+              categoryFolder="funds"
+              addFunc={addFundsItem}
+              backgroundImage={fundsBackground}
+            />
+          }
         />
         <Route
           path="/createExpences"
           element={
-            <CreateItem categoryFolder="Expences" addfunc={addExpencesItem} />
+            <CreateItem
+              categoryFolder="expences"
+              addFunc={addExpencesItem}
+              backgroundImage={expencesBackground}
+            />
           }
         />
+        <Route path="/categoryEdit" element={<CategoryEditor />} />
       </Routes>
     </div>
   );

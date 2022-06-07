@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useAppSelector } from "..";
 import Category from "./Category";
+
 const ExpencesWrapper = styled.div`
   min-height: 200px;
   background-color: #a9f0f0;

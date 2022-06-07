@@ -5,6 +5,13 @@ import {
   GET_TODAY_CURRENCY_RATE,
   ADD_FUNDS_ITEM,
   ADD_EXPENCES_ITEM,
+  STARTED_EDIT_ITEM,
+  FINISHED_EDIT_INCOME_ITEM,
+  FINISHED_EDIT_FUNDS_ITEM,
+  FINISHED_EDIT_EXPENCES_ITEM,
+  DELETE_INCOME_ITEM,
+  DELETE_FUNDS_ITEM,
+  DELETE_EXPENCES_ITEM,
 } from "./types";
 
 export function addIncomeItem(payload: any) {
@@ -27,6 +34,56 @@ export function addExpencesItem(payload: any) {
     payload: payload,
   };
 }
+
+export function startedEditItem(payload: any) {
+  return {
+    type: STARTED_EDIT_ITEM,
+    payload: payload,
+  };
+}
+
+export function finishedEditIncomeItem(payload: any) {
+  return {
+    type: FINISHED_EDIT_INCOME_ITEM,
+    payload: payload,
+  };
+}
+
+export function finishedEditFundsItem(payload: any) {
+  return {
+    type: FINISHED_EDIT_FUNDS_ITEM,
+    payload: payload,
+  };
+}
+
+export function finishedEditExpancesItem(payload: any) {
+  return {
+    type: FINISHED_EDIT_EXPENCES_ITEM,
+    payload: payload,
+  };
+}
+
+export function deleteIncomeItem(payload: any) {
+  return {
+    type: DELETE_INCOME_ITEM,
+    payload: payload,
+  };
+}
+
+export function deleteFundsItem(payload: any) {
+  return {
+    type: DELETE_FUNDS_ITEM,
+    payload: payload,
+  };
+}
+
+export function deleteExpencesItem(payload: any) {
+  return {
+    type: DELETE_EXPENCES_ITEM,
+    payload: payload,
+  };
+}
+
 export function toggleBurgerMenu() {
   return {
     type: TOGGLE_BURGER_MENU,

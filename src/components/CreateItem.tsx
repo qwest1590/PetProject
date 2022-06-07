@@ -3,10 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import backGroundImage from "../images/incomesBackground.jpg";
 import { icons } from "../icons/icons";
 import { useAppDispatch, useAppSelector } from "..";
-// import { addIncomeItem } from "../redux/actions";
 
 const CreateItemWrapper = styled.div`
   height: 100%;
@@ -15,7 +13,7 @@ const CreateItemWrapper = styled.div`
   top: 0px;
   background-size: cover;
 `;
-const Btn = styled.button`
+export const Btn = styled.button`
   height: 75px;
   width: 60px;
   font-size: 4rem;
@@ -23,20 +21,20 @@ const Btn = styled.button`
   align-items: center;
   justify-content: center;
 `;
-const Form = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-flow: column;
-  width: 500px;
   margin: auto;
+  width: 500px;
   input {
+    width: 500px;
     margin-top: 50px;
     height: 50px;
     border-radius: 10px;
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-align: center;
     background-color: lightblue;
     &::placeholder {
-      text-align: center;
     }
     &:focus {
       background-color: wheat;
@@ -51,18 +49,18 @@ const Form = styled.form`
     padding: 10px 20px;
   }
   span {
-    width: 30px;
-    display: inline-block;
-    font-size: 2.2rem;
-    padding-left: 5px;
+    font-size: 3rem;
+    position: absolute;
+    top: 46px;
+    right: 10px;
   }
 `;
 
-const HiddenRadio = styled.input`
+export const HiddenRadio = styled.input`
   display: none;
 `;
 
-const ToggleDiv = styled.div`
+export const ToggleDiv = styled.div`
   width: 200px;
   height: 100px;
   display: flex;
@@ -74,7 +72,7 @@ const ToggleDiv = styled.div`
   align-self: center;
 `;
 
-const ChooseIconButton = styled.button`
+export const ChooseIconButton = styled.button`
   height: 70px;
   width: 70px;
   border-radius: 50%;
@@ -87,11 +85,11 @@ const ChooseIconButton = styled.button`
   margin-top: 15px;
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   transition: all 0.5s linear;
 `;
 
-const Icon = styled.img`
+export const Icon = styled.img`
   width: 75px;
   height: 75px;
   cursor: pointer;
@@ -99,7 +97,7 @@ const Icon = styled.img`
     border: 2px solid black;
   }
 `;
-const IconStore = styled.div`
+export const IconStore = styled.div`
   opacity: 0;
   width: 550px;
   height: 400px;
@@ -113,18 +111,24 @@ const IconStore = styled.div`
 
 export interface IcreateItemProps {
   categoryFolder: string;
-  addfunc: Function;
+  addFunc: Function;
+  backgroundImage: string;
 }
 
-export const CreateItem = ({ categoryFolder, addfunc }: IcreateItemProps) => {
+export const CreateItem = ({
+  categoryFolder,
+  addFunc,
+  backgroundImage,
+}: IcreateItemProps) => {
   const nextId = useAppSelector((state) => state.categories.nextId);
   const [iconStoreIsOpen, setIconStorIsOpen] = useState(false);
   const [categoryForCreate, setCategoryForCreate] = useState({
+    id: nextId,
     name: "",
     icon: "",
     value: 0,
     currency: "Ruble",
-    id: nextId,
+    category: categoryFolder,
   });
 
   const dispatch = useAppDispatch();
@@ -138,16 +142,16 @@ export const CreateItem = ({ categoryFolder, addfunc }: IcreateItemProps) => {
 
   const onSubmitHandler = () => {
     if (categoryForCreate.icon === "") {
-      dispatch(addfunc({ ...categoryForCreate, icon: delaultIcon }));
+      dispatch(addFunc({ ...categoryForCreate, icon: delaultIcon }));
     } else {
-      dispatch(addfunc({ ...categoryForCreate }));
+      dispatch(addFunc({ ...categoryForCreate }));
     }
   };
 
   const navigate = useNavigate();
 
   return (
-    <CreateItemWrapper style={{ backgroundImage: `url(${backGroundImage})` }}>
+    <CreateItemWrapper style={{ backgroundImage: `url(${backgroundImage})` }}>
       <Btn type="button" style={{ marginLeft: "40px", marginTop: "55px" }}>
         <Link
           style={{ textDecoration: "none", color: "black", opacity: 0.7 }}
@@ -171,13 +175,23 @@ export const CreateItem = ({ categoryFolder, addfunc }: IcreateItemProps) => {
             setCategoryForCreate({ ...categoryForCreate, name: e.target.value })
           }
         ></input>
-        <div style={{ alignSelf: "center" }}>
+        <div style={{ alignSelf: "center", position: "relative" }}>
           {" "}
           <input
             type={"number"}
-            placeholder=" Планирую получать"
+            placeholder={
+              categoryFolder === "income"
+                ? " Планирую получать в месяц"
+                : categoryFolder === "funds"
+                ? "Остаток на счете"
+                : "Планирую тратить в месяц"
+            }
             max={99999999}
-            required
+            required={
+              categoryFolder === "Income" || categoryFolder === "Funds"
+                ? true
+                : false
+            }
             onChange={(e) =>
               setCategoryForCreate({
                 ...categoryForCreate,

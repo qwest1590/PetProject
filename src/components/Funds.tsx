@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useAppSelector } from "..";
 import Category from "./Category";
+
 const FundsWrapper = styled.div`
   height: 200px;
   background-color: #e2f0a6;
