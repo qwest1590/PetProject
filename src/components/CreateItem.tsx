@@ -170,6 +170,7 @@ export const CreateItem = ({
         <input
           type={"text"}
           placeholder=" Введите Название"
+          maxLength={14}
           required
           onChange={(e) =>
             setCategoryForCreate({ ...categoryForCreate, name: e.target.value })

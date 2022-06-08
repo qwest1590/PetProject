@@ -11,12 +11,7 @@ import incomesBackground from "../src/images/incomesBackground.jpg";
 import fundsBackground from "../src/images/fundsBackground.jpg";
 import expencesBackground from "../src/images/expencesBackground.jpg";
 import { CategoryEditor } from "./components/CategoryEditor";
-
-const arr = [{ id: 0 }, { id: 1 }, { id: 2, name: "a" }];
-const index = arr.findIndex((item) => {
-  return item.id === 1;
-});
-arr.splice(index, 1, { id: 555 });
+import styled from "styled-components";
 
 function App() {
   return (

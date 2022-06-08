@@ -55,7 +55,7 @@ const Header = () => {
           <span>В Планах</span> <span>{1}</span>
         </Totals>
       </TotalWrapper>
-      {/* <CurrencyRate /> */}
+      <CurrencyRate />
     </HeaderWrapper>
   );
 };

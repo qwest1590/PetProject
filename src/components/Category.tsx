@@ -32,14 +32,14 @@ const CategoryValue = styled.span`
 const CircleWithIcon = styled.div`
   height: 80px;
   width: 80px;
-  border-radius: 50%;
   cursor: pointer;
-  background-color: lightgrey;
+  border-radius: 50%;
+  background-color: #eedada;
 `;
 
 const Icon = styled.img`
   width: 80px;
-  height: 80px;
+  border-radius: 50%;
 `;
 
 const EditButton = styled.button`

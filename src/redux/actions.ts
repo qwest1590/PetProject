@@ -63,21 +63,21 @@ export function finishedEditExpancesItem(payload: any) {
   };
 }
 
-export function deleteIncomeItem(payload: any) {
+export function deleteIncomeItem(payload: number) {
   return {
     type: DELETE_INCOME_ITEM,
     payload: payload,
   };
 }
 
-export function deleteFundsItem(payload: any) {
+export function deleteFundsItem(payload: number) {
   return {
     type: DELETE_FUNDS_ITEM,
     payload: payload,
   };
 }
 
-export function deleteExpencesItem(payload: any) {
+export function deleteExpencesItem(payload: number) {
   return {
     type: DELETE_EXPENCES_ITEM,
     payload: payload,

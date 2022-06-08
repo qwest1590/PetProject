@@ -30,12 +30,9 @@ const EditorWrapper = styled.div`
   background-size: cover;
 `;
 
-// interface IcategoryEditorProps {
-//   item: ICategoryProps;
-// }
 export const CategoryEditor = () => {
   const [iconStoreIsOpen, setIconStorIsOpen] = useState(false);
-  const { name, id, icon, value, currency, category } = useAppSelector(
+  const { id, name, icon, value, currency, category } = useAppSelector(
     (state) => state.categories.itemOnEdit
   );
   const dispatch = useAppDispatch();
