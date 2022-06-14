@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useAppDispatch } from "..";
@@ -20,13 +20,19 @@ const Wrapper = styled.div`
   flex-flow: column;
   align-items: center;
   width: 130px;
-  height: 135px;
-  justify-content: space-between;
+  height: 180px;
   position: relative;
 `;
 
-const CategoryValue = styled.span`
+const CategoryValue = styled.div`
   font-size: 1.2rem;
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+  text-align: center;
+  span {
+    font-size: 0.8rem;
+  }
 `;
 
 const CircleWithIcon = styled.div`
@@ -34,7 +40,8 @@ const CircleWithIcon = styled.div`
   width: 80px;
   cursor: pointer;
   border-radius: 50%;
-  background-color: #eedada;
+  background-color: #dfb0b0;
+  margin: 20px 0px 20px 0px;
 `;
 
 const Icon = styled.img`
@@ -52,7 +59,7 @@ const EditButton = styled.button`
   width: 30px;
   position: absolute;
   right: 23px;
-  top: 78px;
+  top: 92px;
   background-color: lightseagreen;
   cursor: pointer;
   font-size: 1.2rem;
@@ -64,7 +71,7 @@ const EditButton = styled.button`
 `;
 
 const DeleteButton = styled(EditButton)`
-  top: 20px;
+  top: 36px;
 `;
 
 export interface ICategoryProps {
@@ -72,6 +79,7 @@ export interface ICategoryProps {
   name: string;
   icon: string;
   value: number;
+  targetValue: number;
   currency: string;
   category: string;
 }
@@ -81,6 +89,7 @@ export default function Category({
   name,
   icon,
   value,
+  targetValue,
   currency,
   category,
 }: ICategoryProps) {
@@ -134,6 +143,7 @@ export default function Category({
               name,
               icon,
               value,
+              targetValue,
               currency,
               category,
             })
@@ -152,7 +162,8 @@ export default function Category({
         <Icon src={icon} alt=""></Icon>
       </CircleWithIcon>
       <CategoryValue>
-        {value} {currency === "Ruble" ? "\u20bd" : "\u0024"}
+        {value} {currency === "Ruble" ? "\u20bd" : "\u0024"} <br></br>
+        <span>{targetValue !== 0 ? targetValue : null}</span>
       </CategoryValue>
     </Wrapper>
   );

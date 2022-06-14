@@ -121,12 +121,13 @@ export const CreateItem = ({
   backgroundImage,
 }: IcreateItemProps) => {
   const nextId = useAppSelector((state) => state.categories.nextId);
-  const [iconStoreIsOpen, setIconStorIsOpen] = useState(false);
+  const [iconStoreIsOpen, setIconStoreIsOpen] = useState(false);
   const [categoryForCreate, setCategoryForCreate] = useState({
     id: nextId,
     name: "",
     icon: "",
     value: 0,
+    targetValue: 0,
     currency: "Ruble",
     category: categoryFolder,
   });
@@ -194,10 +195,15 @@ export const CreateItem = ({
                 : false
             }
             onChange={(e) =>
-              setCategoryForCreate({
-                ...categoryForCreate,
-                value: +e.target.value,
-              })
+              categoryFolder === "expences"
+                ? setCategoryForCreate({
+                    ...categoryForCreate,
+                    targetValue: +e.target.value,
+                  })
+                : setCategoryForCreate({
+                    ...categoryForCreate,
+                    value: +e.target.value,
+                  })
             }
           ></input>
           <span>
@@ -249,7 +255,7 @@ export const CreateItem = ({
       </Form>
       <ChooseIconButton
         type="button"
-        onClick={() => setIconStorIsOpen(!iconStoreIsOpen)}
+        onClick={() => setIconStoreIsOpen(!iconStoreIsOpen)}
       >
         {categoryForCreate.icon ? (
           <img
@@ -275,7 +281,7 @@ export const CreateItem = ({
             src={icon}
             onClick={() => {
               setCategoryForCreate({ ...categoryForCreate, icon: icon });
-              setIconStorIsOpen(false);
+              setIconStoreIsOpen(false);
             }}
           ></Icon>
         ))}

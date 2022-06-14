@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { toggleBurgerMenu } from "../redux/actions";
-import { useAppSelector } from "..";
+import { logOut, toggleBurgerMenu } from "../redux/actions";
+import { useAppDispatch, useAppSelector } from "..";
 const Bar = styled.span`
   display: block;
   width: 50px;
@@ -83,7 +83,7 @@ const NavLink = styled(Link)`
 `;
 
 export const BurgerMenu = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.app.burgerIsOpen);
   const onClickHandler = () => {
     dispatch(toggleBurgerMenu());
@@ -109,7 +109,13 @@ export const BurgerMenu = () => {
         <NavLink onClick={onClickHandler} to={"/Settings"}>
           Настройки
         </NavLink>
-        <NavLink onClick={onClickHandler} to={"/LogIn"}>
+        <NavLink
+          onClick={() => {
+            onClickHandler();
+            dispatch(logOut());
+          }}
+          to={"/Login"}
+        >
           Выйти
         </NavLink>
       </SideMenu>

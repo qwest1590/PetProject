@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "..";
-import { ICategoryProps } from "./Category";
 import editBackground from "../images/editBackground.jpg";
 import { icons } from "../icons/icons";
 import {
@@ -16,7 +15,7 @@ import {
 } from "./CreateItem";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  finishedEditExpancesItem,
+  finishedEditExpencesItem,
   finishedEditFundsItem,
   finishedEditIncomeItem,
 } from "../redux/actions";
@@ -32,9 +31,8 @@ const EditorWrapper = styled.div`
 
 export const CategoryEditor = () => {
   const [iconStoreIsOpen, setIconStorIsOpen] = useState(false);
-  const { id, name, icon, value, currency, category } = useAppSelector(
-    (state) => state.categories.itemOnEdit
-  );
+  const { id, name, icon, value, targetValue, currency, category } =
+    useAppSelector((state) => state.categories.itemOnEdit);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -43,6 +41,7 @@ export const CategoryEditor = () => {
     name,
     icon,
     value,
+    targetValue,
     currency,
     category,
   });
@@ -62,7 +61,7 @@ export const CategoryEditor = () => {
         dispatch(finishedEditFundsItem(itemForEdit));
         break;
       case "expences":
-        dispatch(finishedEditExpancesItem(itemForEdit));
+        dispatch(finishedEditExpencesItem(itemForEdit));
         break;
       default:
         console.log("default");
@@ -103,10 +102,15 @@ export const CategoryEditor = () => {
               category === "Income" || category === "Funds" ? true : false
             }
             onChange={(e) =>
-              setItemForEdit({
-                ...itemForEdit,
-                value: +e.target.value,
-              })
+              category === "expences"
+                ? setItemForEdit({
+                    ...itemForEdit,
+                    targetValue: +e.target.value,
+                  })
+                : setItemForEdit({
+                    ...itemForEdit,
+                    value: +e.target.value,
+                  })
             }
           ></input>
           <span>{itemForEdit.currency === "Ruble" ? "\u20bd" : "\u0024"}</span>

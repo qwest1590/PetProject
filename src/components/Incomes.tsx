@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useAppSelector } from "..";
 import Category from "./Category";
 import { Link } from "react-router-dom";
@@ -11,6 +10,7 @@ const IncomesWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const AddBtn = styled.button`
   height: 80px;
   width: 80px;
@@ -24,17 +24,13 @@ const AddBtn = styled.button`
 
 export const Incomes = () => {
   const incomeItems = useAppSelector((state) => state.categories.income);
-  const dispatch = useDispatch();
-
   return (
     <IncomesWrapper>
-      {incomeItems.length > 0
-        ? incomeItems.map((item) => (
-            <li key={item.id} style={{ listStyle: "none" }}>
-              <Category key={item.id} {...item} />{" "}
-            </li>
-          ))
-        : null}
+      {incomeItems.map((item) => (
+        <li key={item.id} style={{ listStyle: "none" }}>
+          <Category key={item.id} {...item} />{" "}
+        </li>
+      ))}
       <AddBtn>
         <Link
           style={{ textDecoration: "none", color: "black", opacity: 0.7 }}

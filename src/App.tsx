@@ -12,10 +12,32 @@ import fundsBackground from "../src/images/fundsBackground.jpg";
 import expencesBackground from "../src/images/expencesBackground.jpg";
 import { CategoryEditor } from "./components/CategoryEditor";
 import styled from "styled-components";
+import { Login } from "./components/Login";
+
+const AppWrapper = styled.div``;
+// export interface Props {
+//   progress: number;
+// }
+
+// const CircleWrapper = styled.div`
+//   height: 150px;
+//   width: 150px;
+//   border-radius: 50%;
+//   background-color: #47dfdf;
+// `;
+
+// const Circle = styled.div`
+//   height: 150px;
+//   width: 150px;
+//   border-radius: 50%;
+//   position: absolute;
+//   clip: rect(${(p: Props) => p.progress + "px"}, 150px, 150px, 0px);
+//   background-color: #1a7ecf;
+// `;
 
 function App() {
   return (
-    <div className="App-wrapper">
+    <AppWrapper>
       <Header />
       <Incomes />
       <Funds />
@@ -53,8 +75,13 @@ function App() {
           }
         />
         <Route path="/categoryEdit" element={<CategoryEditor />} />
+        <Route path="/Login" element={<Login />} />
       </Routes>
-    </div>
+      {/* <CircleWrapper>
+        {" "}
+        <Circle progress={70}> </Circle>
+      </CircleWrapper> */}
+    </AppWrapper>
   );
 }
 

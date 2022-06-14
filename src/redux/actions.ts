@@ -1,3 +1,4 @@
+import { type } from "os";
 import { AppDispatch } from "..";
 import {
   ADD_INCOME_ITEM,
@@ -12,6 +13,8 @@ import {
   DELETE_INCOME_ITEM,
   DELETE_FUNDS_ITEM,
   DELETE_EXPENCES_ITEM,
+  LOGGED_IN,
+  LOG_OUT,
 } from "./types";
 
 export function addIncomeItem(payload: any) {
@@ -56,7 +59,7 @@ export function finishedEditFundsItem(payload: any) {
   };
 }
 
-export function finishedEditExpancesItem(payload: any) {
+export function finishedEditExpencesItem(payload: any) {
   return {
     type: FINISHED_EDIT_EXPENCES_ITEM,
     payload: payload,
@@ -87,6 +90,19 @@ export function deleteExpencesItem(payload: number) {
 export function toggleBurgerMenu() {
   return {
     type: TOGGLE_BURGER_MENU,
+  };
+}
+
+export function loggedIn(payload: object) {
+  return {
+    type: LOGGED_IN,
+    payload: payload,
+  };
+}
+
+export function logOut() {
+  return {
+    type: LOG_OUT,
   };
 }
 
